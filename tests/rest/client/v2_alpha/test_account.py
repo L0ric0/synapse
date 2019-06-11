@@ -28,6 +28,12 @@ from synapse.rest.client.v2_alpha import account, register
 
 from tests import unittest
 
+# Awful hack to avoid loading jinja2 to avoid upsetting old python.
+try:
+    from synapse.push.mailer import load_jinja2_templates
+except ImportError:
+    load_jinja2_templates = None
+
 
 class PasswordResetTestCase(unittest.HomeserverTestCase):
 
